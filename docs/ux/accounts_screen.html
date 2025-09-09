@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Stitch Design</title>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #121212;
+            --secondary-color: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --accent-color: #4CAF50;
+            --accent-red: #F44336;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[var(--primary-color)] text-[var(--text-primary)]">
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden">
+<div class="flex-grow">
+<header class="sticky top-0 z-10 bg-[var(--primary-color)]">
+<div class="flex items-center p-4 justify-between">
+<div class="w-12"></div>
+<h1 class="text-xl font-bold">Accounts</h1>
+<div class="flex items-center gap-2">
+<button class="p-2">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</header>
+<main class="p-4 space-y-6">
+<section class="bg-[var(--secondary-color)] rounded-lg p-4">
+<div class="grid grid-cols-3 gap-4 text-center">
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Assets</p>
+<p class="text-lg font-semibold text-[var(--accent-color)]">$15,250.00</p>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Liabilities</p>
+<p class="text-lg font-semibold text-[var(--accent-red)]">$2,500.00</p>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Total</p>
+<p class="text-lg font-semibold">$12,750.00</p>
+</div>
+</div>
+</section>
+<section class="space-y-4">
+<div>
+<div class="flex justify-between items-center mb-2">
+<h2 class="text-lg font-semibold text-[var(--text-secondary)]">Cards</h2>
+<p class="font-medium">-$500.00</p>
+</div>
+<div class="space-y-2">
+<div class="pl-4">
+<div class="flex justify-between items-center py-2">
+<h3 class="font-semibold text-[var(--text-secondary)]">Credit Card</h3>
+<p class="text-sm font-medium text-[var(--accent-red)]">-$500.00</p>
+</div>
+<div class="space-y-2 pl-4 border-l-2 border-gray-700">
+<div class="flex items-center justify-between bg-[var(--secondary-color)] p-3 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-500/20 rounded-full">
+<span class="material-symbols-outlined text-blue-400">credit_card</span>
+</div>
+<p class="font-medium">Amex Card</p>
+</div>
+<p class="text-[var(--accent-red)]">-$200.00</p>
+</div>
+<div class="flex items-center justify-between bg-[var(--secondary-color)] p-3 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-green-500/20 rounded-full">
+<span class="material-symbols-outlined text-green-400">credit_card</span>
+</div>
+<p class="font-medium">Chase Credit Card</p>
+</div>
+<p class="text-[var(--accent-red)]">-$300.00</p>
+</div>
+</div>
+</div>
+<div class="pl-4">
+<div class="flex justify-between items-center py-2">
+<h3 class="font-semibold text-[var(--text-secondary)]">Debit Card</h3>
+<p class="text-sm font-medium">$1,500.00</p>
+</div>
+<div class="space-y-2 pl-4 border-l-2 border-gray-700">
+<div class="flex items-center justify-between bg-[var(--secondary-color)] p-3 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-purple-500/20 rounded-full">
+<span class="material-symbols-outlined text-purple-400">credit_card</span>
+</div>
+<p class="font-medium">Bank of America Debit</p>
+</div>
+<p>$1,500.00</p>
+</div>
+</div>
+</div>
+<div class="pl-4">
+<div class="flex justify-between items-center py-2">
+<h3 class="font-semibold text-[var(--text-secondary)]">Meal Card</h3>
+<p class="text-sm font-medium">$250.00</p>
+</div>
+<div class="space-y-2 pl-4 border-l-2 border-gray-700">
+<div class="flex items-center justify-between bg-[var(--secondary-color)] p-3 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-orange-500/20 rounded-full">
+<span class="material-symbols-outlined text-orange-400">restaurant</span>
+</div>
+<p class="font-medium">Sodexo Meal Pass</p>
+</div>
+<p>$250.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<h2 class="text-lg font-semibold text-[var(--text-secondary)]">Cash</h2>
+<p class="font-medium">$1,200.00</p>
+</div>
+<div class="space-y-2">
+<div class="pl-4">
+<div class="flex justify-between items-center py-2">
+<h3 class="font-semibold text-[var(--text-secondary)]">Wallet</h3>
+<p class="text-sm font-medium">$1,200.00</p>
+</div>
+<div class="space-y-2 pl-4 border-l-2 border-gray-700">
+<div class="flex items-center justify-between bg-[var(--secondary-color)] p-3 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-yellow-500/20 rounded-full">
+<span class="material-symbols-outlined text-yellow-400">account_balance_wallet</span>
+</div>
+<p class="font-medium">My Wallet</p>
+</div>
+<p>$1,200.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-[var(--text-secondary)] rounded-lg text-[var(--text-secondary)] hover:bg-[var(--secondary-color)] hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+<span>Add New Account</span>
+</button>
+</div>
+</section>
+</main>
+</div>
+<footer class="sticky bottom-0 bg-[var(--primary-color)] border-t border-[var(--secondary-color)]">
+<nav class="flex justify-around items-center p-2">
+<a class="flex flex-col items-center gap-1 p-2 text-[var(--text-secondary)]" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-xs">Calendar</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[var(--text-secondary)]" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-xs">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[var(--text-primary)]" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="text-xs">Accounts</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[var(--text-secondary)]" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="text-xs">More</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>
