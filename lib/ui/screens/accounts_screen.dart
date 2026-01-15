@@ -110,7 +110,7 @@ class AccountsScreen extends ConsumerWidget {
           Text(
             'Accounts',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),

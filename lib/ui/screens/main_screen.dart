@@ -46,23 +46,23 @@ class MainScreen extends ConsumerWidget {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, size: 24),
-              activeIcon: Icon(Icons.calendar_today, size: 24),
+              icon: Icon(Icons.calendar_today, size: 20),
+              activeIcon: Icon(Icons.calendar_today, size: 20),
               label: 'Transactions',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart, size: 24),
-              activeIcon: Icon(Icons.bar_chart, size: 24),
+              icon: Icon(Icons.bar_chart, size: 20),
+              activeIcon: Icon(Icons.bar_chart, size: 20),
               label: 'Stats',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance, size: 24),
-              activeIcon: Icon(Icons.account_balance, size: 24),
+              icon: Icon(Icons.account_balance, size: 20),
+              activeIcon: Icon(Icons.account_balance, size: 20),
               label: 'Accounts',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list, size: 24),
-              activeIcon: Icon(Icons.list, size: 24),
+              icon: Icon(Icons.list, size: 20),
+              activeIcon: Icon(Icons.list, size: 20),
               label: 'More',
             ),
           ],

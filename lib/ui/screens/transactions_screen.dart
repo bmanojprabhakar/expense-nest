@@ -22,54 +22,51 @@ class TransactionsScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: AppTheme.primaryBackground,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Header with account icon and title
-            _buildHeader(context),
-            
-            // Month navigation
-            MonthNavigation(
-              selectedMonth: selectedMonth,
-              onMonthChanged: (month) {
-                ref.read(selectedMonthProvider.notifier).state = month;
-              },
-            ),
-            
-            // Tab bar (Daily, Calendar, Monthly, Summary, Description)
-            TabBarWidget(
-              selectedTab: selectedTab,
-              onTabChanged: (tab) {
-                ref.read(selectedTabProvider.notifier).state = tab;
-              },
-            ),
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Column(
+              children: [
+                // Header with account icon and title
+                _buildHeader(context),
+                
+                // Month navigation
+                MonthNavigation(
+                  selectedMonth: selectedMonth,
+                  onMonthChanged: (month) {
+                    ref.read(selectedMonthProvider.notifier).state = month;
+                  },
+                ),
+                
+                // Tab bar (Daily, Calendar, Monthly, Summary, Description)
+                TabBarWidget(
+                  selectedTab: selectedTab,
+                  onTabChanged: (tab) {
+                    ref.read(selectedTabProvider.notifier).state = tab;
+                  },
+                ),
 
-            // Content area (Calendar or List view based on selected tab)
-            Expanded(
-              child: selectedTab == 'Calendar' 
-                  ? _buildCalendarView()
-                  : _buildListView(summaryAsync, transactionsAsync),
+                // Content area (Calendar or List view based on selected tab)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 80), // Space for fixed button
+                    child: selectedTab == 'Calendar' 
+                        ? _buildCalendarView()
+                        : _buildListView(summaryAsync, transactionsAsync),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      // Floating Action Button for adding transactions
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AddTransactionScreen(),
-            ),
-          ).then((result) {
-            // Refresh data if transaction was saved successfully
-            if (result == true) {
-              ref.invalidate(monthlyTransactionsProvider);
-              ref.invalidate(monthlySummaryProvider);
-            }
-          });
-        },
-        backgroundColor: AppTheme.activeTabColor,
-        child: const Icon(Icons.add, color: AppTheme.textPrimary),
+          ),
+          
+          // Fixed Add Transaction button at bottom
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: _buildAddTransactionButton(context, ref),
+          ),
+        ],
       ),
     );
   }
@@ -240,14 +237,14 @@ class TransactionsScreen extends ConsumerWidget {
 
   Widget _buildHeader(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Account/Wallet icon
           Container(
-            width: 40,
-            height: 40,
+            width: 28,
+            height: 28,
             decoration: const BoxDecoration(
               color: AppTheme.cardBackground,
               shape: BoxShape.circle,
@@ -255,7 +252,7 @@ class TransactionsScreen extends ConsumerWidget {
             child: const Icon(
               Icons.account_balance_wallet,
               color: AppTheme.textPrimary,
-              size: 24,
+              size: 16,
             ),
           ),
           
@@ -266,8 +263,64 @@ class TransactionsScreen extends ConsumerWidget {
           ),
           
           // Spacer for symmetry
-          const SizedBox(width: 40),
+          const SizedBox(width: 28),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAddTransactionButton(BuildContext context, WidgetRef ref) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppTheme.primaryBackground,
+        border: Border(
+          top: BorderSide(color: AppTheme.dividerColor, width: 1),
+        ),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AddTransactionScreen(),
+                  ),
+                ).then((result) {
+                  // Refresh data if transaction was saved successfully
+                  if (result == true) {
+                    ref.invalidate(monthlyTransactionsProvider);
+                    ref.invalidate(monthlySummaryProvider);
+                  }
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.activeTabColor,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: AppTheme.buttonBorderRadius,
+                ),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.add, color: AppTheme.textPrimary, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'Add Transaction',
+                    style: TextStyle(
+                      color: AppTheme.textPrimary,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

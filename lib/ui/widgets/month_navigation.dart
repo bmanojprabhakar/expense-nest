@@ -16,7 +16,7 @@ class MonthNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -30,27 +30,32 @@ class MonthNavigation extends StatelessWidget {
               );
               onMonthChanged(previousMonth);
             },
+            padding: const EdgeInsets.all(8),
+            constraints: const BoxConstraints(
+              minWidth: 32,
+              minHeight: 32,
+            ),
             icon: const Icon(
               Icons.arrow_back_ios,
               color: AppTheme.textTertiary,
-              size: 20,
+              size: 16,
             ),
           ),
           
-          AppTheme.horizontalSpaceMedium,
+          AppTheme.horizontalSpaceSmall,
           
           // Month and year display
           Text(
             DateFormat('MMMM yyyy').format(selectedMonth),
             style: const TextStyle(
               color: AppTheme.textPrimary,
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
               letterSpacing: -0.015,
             ),
           ),
           
-          AppTheme.horizontalSpaceMedium,
+          AppTheme.horizontalSpaceSmall,
           
           // Next month button
           IconButton(
@@ -62,10 +67,15 @@ class MonthNavigation extends StatelessWidget {
               );
               onMonthChanged(nextMonth);
             },
+            padding: const EdgeInsets.all(8),
+            constraints: const BoxConstraints(
+              minWidth: 32,
+              minHeight: 32,
+            ),
             icon: const Icon(
               Icons.arrow_forward_ios,
               color: AppTheme.textTertiary,
-              size: 20,
+              size: 16,
             ),
           ),
         ],

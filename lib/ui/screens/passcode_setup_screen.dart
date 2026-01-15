@@ -174,7 +174,7 @@ class _PasscodeSetupScreenState extends ConsumerState<PasscodeSetupScreen> {
           child: Text(
             number,
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: 17,
               fontWeight: FontWeight.bold,
               color: AppTheme.textPrimary,
             ),
@@ -226,7 +226,7 @@ class _PasscodeSetupScreenState extends ConsumerState<PasscodeSetupScreen> {
             Text(
               _isConfirming ? 'Confirm your passcode' : 'Create a 4-digit passcode',
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: AppTheme.textPrimary,
               ),
@@ -249,24 +249,36 @@ class _PasscodeSetupScreenState extends ConsumerState<PasscodeSetupScreen> {
             _buildNumberPad(),
             const Spacer(),
             if (_biometricAvailable && !_isConfirming) ...[
-              Card(
-                child: Padding(
-                  padding: AppTheme.cardPadding,
-                  child: Column(
-                    children: [
-                      SwitchListTile(
-                        title: const Text('Enable Biometric Authentication'),
-                        subtitle: const Text('Use fingerprint or face recognition for quick access'),
-                        value: _enableBiometric,
-                        onChanged: (value) {
-                          setState(() {
-                            _enableBiometric = value;
-                          });
-                        },
-                        activeColor: AppTheme.activeTabColor,
-                      ),
-                    ],
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppTheme.cardBackground,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: SwitchListTile(
+                  dense: true,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                  title: const Text(
+                    'Enable Biometric',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
+                  subtitle: const Text(
+                    'Use fingerprint/face for quick access',
+                    style: TextStyle(
+                      fontSize: 10,
+                    ),
+                  ),
+                  value: _enableBiometric,
+                  onChanged: (value) {
+                    setState(() {
+                      _enableBiometric = value;
+                    });
+                  },
+                  activeColor: AppTheme.activeTabColor,
                 ),
               ),
             ],

@@ -191,7 +191,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
             'Transaction Type',
             style: const TextStyle(
               color: AppTheme.textSecondary,
-              fontSize: 14,
+              fontSize: 10,
             ),
           ),
           const Spacer(),
@@ -229,7 +229,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
           'Amount',
           style: TextStyle(
             color: AppTheme.textPrimary,
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -255,13 +255,13 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
               prefixText: '₹ ',
               prefixStyle: TextStyle(
                 color: AppTheme.textSecondary,
-                fontSize: 24,
+                fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
               hintText: '0.00',
               hintStyle: TextStyle(
                 color: AppTheme.textSecondary,
-                fontSize: 24,
+                fontSize: 17,
               ),
               border: InputBorder.none,
               contentPadding: EdgeInsets.all(16),
@@ -280,7 +280,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
           'Date',
           style: TextStyle(
             color: AppTheme.textPrimary,
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -323,7 +323,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
                   DateFormat('MMM dd, yyyy').format(selectedDate),
                   style: const TextStyle(
                     color: AppTheme.textPrimary,
-                    fontSize: 16,
+                    fontSize: 11,
                   ),
                 ),
                 const Spacer(),
@@ -344,7 +344,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
           'Note',
           style: TextStyle(
             color: AppTheme.textPrimary,
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -378,7 +378,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
           'Description',
           style: TextStyle(
             color: AppTheme.textPrimary,
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -428,7 +428,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
                   'Shared Expense',
                   style: TextStyle(
                     color: AppTheme.textPrimary,
-                    fontSize: 16,
+                    fontSize: 11,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -437,7 +437,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
                     'Split this expense with family/group',
                     style: TextStyle(
                       color: AppTheme.textSecondary,
-                      fontSize: 14,
+                      fontSize: 10,
                     ),
                   ),
               ],
@@ -458,6 +458,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
   Widget _buildActionButtons(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
+        color: AppTheme.primaryBackground,
         border: Border(
           top: BorderSide(color: AppTheme.dividerColor, width: 1),
         ),
@@ -493,7 +494,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
                           'Delete',
                           style: TextStyle(
                             color: AppTheme.textPrimary,
-                            fontSize: 16,
+                            fontSize: 11,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -529,7 +530,7 @@ class _EditTransactionScreenState extends ConsumerState<EditTransactionScreen> {
                           'Update Transaction',
                           style: TextStyle(
                             color: AppTheme.textPrimary,
-                            fontSize: 16,
+                            fontSize: 11,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

@@ -39,7 +39,7 @@ class DailyTransactionGroup extends StatelessWidget {
                     date.day.toString(),
                     style: const TextStyle(
                       color: AppTheme.textPrimary,
-                      fontSize: 18,
+                      fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -48,7 +48,7 @@ class DailyTransactionGroup extends StatelessWidget {
                     dayName,
                     style: const TextStyle(
                       color: AppTheme.textSecondary,
-                      fontSize: 14,
+                      fontSize: 10,
                     ),
                   ),
                 ],
@@ -228,7 +228,7 @@ class _TransactionCard extends ConsumerWidget {
                       transaction.account?.name ?? 'Unknown Account',
                       style: const TextStyle(
                         color: AppTheme.textSecondary,
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
                   ],

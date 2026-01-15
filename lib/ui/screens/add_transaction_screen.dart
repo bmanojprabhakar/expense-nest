@@ -81,27 +81,27 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                   // Transaction Type Toggle (Income/Expense)
                   _buildTransactionTypeToggle(ref, transactionType),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Amount Input
                   _buildAmountInput(ref, amount),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Date Selection
                   _buildDateSelector(context, ref, selectedDate),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Category Selection
                   const CategorySelector(),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Account Selection  
                   const AccountSelector(),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Note Input
                   _buildNoteInput(ref),
@@ -111,7 +111,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                   // Description Input
                   _buildDescriptionInput(ref),
                   
-                  AppTheme.verticalSpaceLarge,
+                  AppTheme.verticalSpaceMedium,
                   
                   // Shared Expense Section (only for expenses)
                   if (transactionType == TransactionType.expense) ...[
@@ -263,188 +263,224 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
   }
 
   Widget _buildAmountInput(WidgetRef ref, String amount) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Amount',
-          style: TextStyle(
-            color: AppTheme.textPrimary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        AppTheme.verticalSpaceSmall,
-        Container(
-          decoration: BoxDecoration(
-            color: AppTheme.cardBackground,
-            borderRadius: AppTheme.cardBorderRadius,
-            border: Border.all(color: AppTheme.dividerColor),
-          ),
-          child: TextField(
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
-            ],
-            style: const TextStyle(
-              color: AppTheme.textPrimary,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            decoration: const InputDecoration(
-              prefixText: '₹ ',
-              prefixStyle: TextStyle(
-                color: AppTheme.textSecondary,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.cardBackground,
+        borderRadius: AppTheme.cardBorderRadius,
+        border: Border.all(color: AppTheme.dividerColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 80,
+              child: Text(
+                'Amount',
+                style: TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-              hintText: '0.00',
-              hintStyle: TextStyle(
-                color: AppTheme.textSecondary,
-                fontSize: 24,
-              ),
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16),
             ),
-            onChanged: (value) {
-              ref.read(selectedAmountProvider.notifier).state = value;
-            },
-          ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: TextField(
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                ],
+                style: const TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+                decoration: const InputDecoration(
+                  prefixText: '₹ ',
+                  prefixStyle: TextStyle(
+                    color: AppTheme.textSecondary,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: '0.00',
+                  hintStyle: TextStyle(
+                    color: AppTheme.textSecondary,
+                    fontSize: 17,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                onChanged: (value) {
+                  ref.read(selectedAmountProvider.notifier).state = value;
+                },
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   Widget _buildDateSelector(BuildContext context, WidgetRef ref, DateTime selectedDate) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Date',
-          style: TextStyle(
-            color: AppTheme.textPrimary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        AppTheme.verticalSpaceSmall,
-        InkWell(
-          onTap: () async {
-            final pickedDate = await showDatePicker(
-              context: context,
-              initialDate: selectedDate,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              builder: (context, child) {
-                return Theme(
-                  data: Theme.of(context).copyWith(
-                    colorScheme: const ColorScheme.dark(
-                      primary: AppTheme.activeTabColor,
-                      surface: AppTheme.cardBackground,
-                    ),
-                  ),
-                  child: child!,
-                );
-              },
-            );
-            if (pickedDate != null) {
-              ref.read(selectedDateProvider.notifier).state = pickedDate;
-            }
-          },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppTheme.cardBackground,
-              borderRadius: AppTheme.cardBorderRadius,
-              border: Border.all(color: AppTheme.dividerColor),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.calendar_today, color: AppTheme.textSecondary),
-                AppTheme.horizontalSpaceMedium,
-                Text(
-                  DateFormat('MMM dd, yyyy').format(selectedDate),
-                  style: const TextStyle(
-                    color: AppTheme.textPrimary,
-                    fontSize: 16,
-                  ),
+    return InkWell(
+      onTap: () async {
+        final pickedDate = await showDatePicker(
+          context: context,
+          initialDate: selectedDate,
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2100),
+          builder: (context, child) {
+            return Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: const ColorScheme.dark(
+                  primary: AppTheme.activeTabColor,
+                  surface: AppTheme.cardBackground,
                 ),
-                const Spacer(),
-                const Icon(Icons.arrow_drop_down, color: AppTheme.textSecondary),
-              ],
-            ),
-          ),
+              ),
+              child: child!,
+            );
+          },
+        );
+        if (pickedDate != null) {
+          ref.read(selectedDateProvider.notifier).state = pickedDate;
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppTheme.cardBackground,
+          borderRadius: AppTheme.cardBorderRadius,
+          border: Border.all(color: AppTheme.dividerColor),
         ),
-      ],
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 80,
+              child: Text(
+                'Date',
+                style: TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            const Icon(Icons.calendar_today, color: AppTheme.textSecondary, size: 16),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                DateFormat('MMM dd, yyyy').format(selectedDate),
+                style: const TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+            const Icon(Icons.arrow_drop_down, color: AppTheme.textSecondary, size: 16),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildNoteInput(WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Note',
-          style: TextStyle(
-            color: AppTheme.textPrimary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        AppTheme.verticalSpaceSmall,
-        Container(
-          decoration: BoxDecoration(
-            color: AppTheme.cardBackground,
-            borderRadius: AppTheme.cardBorderRadius,
-            border: Border.all(color: AppTheme.dividerColor),
-          ),
-          child: TextField(
-            controller: _noteController,
-            style: const TextStyle(color: AppTheme.textPrimary),
-            decoration: const InputDecoration(
-              hintText: 'Enter a note (optional)',
-              hintStyle: TextStyle(color: AppTheme.textSecondary),
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.cardBackground,
+        borderRadius: AppTheme.cardBorderRadius,
+        border: Border.all(color: AppTheme.dividerColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 80,
+              child: Text(
+                'Note',
+                style: TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-          ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: TextField(
+                controller: _noteController,
+                style: const TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                ),
+                decoration: const InputDecoration(
+                  hintText: 'Enter a note (optional)',
+                  hintStyle: TextStyle(
+                    color: AppTheme.textSecondary,
+                    fontSize: 11,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   Widget _buildDescriptionInput(WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Description',
-          style: TextStyle(
-            color: AppTheme.textPrimary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        AppTheme.verticalSpaceSmall,
-        Container(
-          decoration: BoxDecoration(
-            color: AppTheme.cardBackground,
-            borderRadius: AppTheme.cardBorderRadius,
-            border: Border.all(color: AppTheme.dividerColor),
-          ),
-          child: TextField(
-            controller: _descriptionController,
-            style: const TextStyle(color: AppTheme.textPrimary),
-            maxLines: 3,
-            decoration: const InputDecoration(
-              hintText: 'Enter additional details (optional)',
-              hintStyle: TextStyle(color: AppTheme.textSecondary),
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.cardBackground,
+        borderRadius: AppTheme.cardBorderRadius,
+        border: Border.all(color: AppTheme.dividerColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 80,
+              child: Padding(
+                padding: EdgeInsets.only(top: 2),
+                child: Text(
+                  'Description',
+                  style: TextStyle(
+                    color: AppTheme.textPrimary,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
             ),
-          ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: TextField(
+                controller: _descriptionController,
+                style: const TextStyle(
+                  color: AppTheme.textPrimary,
+                  fontSize: 11,
+                ),
+                maxLines: 2,
+                decoration: const InputDecoration(
+                  hintText: 'Enter additional details (optional)',
+                  hintStyle: TextStyle(
+                    color: AppTheme.textSecondary,
+                    fontSize: 11,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
@@ -471,7 +507,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                   'Shared Expense',
                   style: TextStyle(
                     color: AppTheme.textPrimary,
-                    fontSize: 16,
+                    fontSize: 11,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -501,6 +537,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
   Widget _buildSaveButton(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
+        color: AppTheme.primaryBackground,
         border: Border(
           top: BorderSide(color: AppTheme.dividerColor, width: 1),
         ),
@@ -534,7 +571,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                       'Save Transaction',
                       style: TextStyle(
                         color: AppTheme.textPrimary,
-                        fontSize: 16,
+                        fontSize: 11,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

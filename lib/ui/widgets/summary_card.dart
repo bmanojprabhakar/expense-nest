@@ -19,8 +19,8 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: AppTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
@@ -85,15 +85,15 @@ class SummaryCard extends StatelessWidget {
           label,
           style: const TextStyle(
             color: AppTheme.textSecondary,
-            fontSize: 14,
+            fontSize: 10,
           ),
         ),
-        AppTheme.verticalSpaceSmall,
+        const SizedBox(height: 4),
         Text(
           AppTheme.formatCurrency(amount, showSign: false),
           style: TextStyle(
             color: color,
-            fontSize: 18,
+            fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
         ),

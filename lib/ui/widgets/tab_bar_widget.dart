@@ -41,7 +41,7 @@ class TabBarWidget extends StatelessWidget {
             child: InkWell(
               onTap: () => onTabChanged(tab),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -55,7 +55,7 @@ class TabBarWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: isSelected ? AppTheme.textPrimary : AppTheme.textTertiary,
-                    fontSize: 14,
+                    fontSize: 10,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                   ),
                 ),
